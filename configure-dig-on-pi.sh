@@ -4,12 +4,11 @@ set -e
 
 export BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-echo "Disable stages 3 to 5"
-touch ${BASE_DIR}/stage{3,4,5}/SKIP
+echo "Delete stages 3 to 5"
+rm -rf ${BASE_DIR}/stage{3,4,5}
 
-echo "Remove unwanted image and noobs exports"
-rm -f ${BASE_DIR}/stage{4,5}/EXPORT_IMAGE
-rm -f ${BASE_DIR}/stage*/EXPORT_NOOBS
+echo "Replace stage3 with the DigiGes scripts"
+cp -ra ${BASE_DIR}/stage3-digiges ${BASE_DIR}/stage3
 
 echo "Adapt image name"
 echo "IMG_NAME=DigOnPi" > ${BASE_DIR}/config
