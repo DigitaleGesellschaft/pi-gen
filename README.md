@@ -61,10 +61,16 @@ The following environment variables are supported:
    be built and cached.  Note, `WORK_DIR` stores a complete copy of the target
    system for each build stage, amounting to tens of gigabytes in the case of
    Raspbian.
+   
+   **CAUTION**: If your working directory is on an NTFS partition you probably won't be able to build. Make sure this is a proper Linux filesystem.
 
  * `DEPLOY_DIR`  (Default: `"$BASE_DIR/deploy"`)
 
    Output directory for target system images and NOOBS bundles.
+
+ * `USE_QEMU` (Default: `"0"`)
+
+   This enable the Qemu mode and set filesystem and image suffix if set to 1.
 
 
 A simple example for building Raspbian:
@@ -166,7 +172,7 @@ from `./stage2` (if building a minimal system).
 # Example for building a lite system
 echo "IMG_NAME='Raspbian'" > config
 touch ./stage3/SKIP ./stage4/SKIP ./stage5/SKIP
-rm stage4/EXPORT*
+rm stage4/EXPORT* stage5/EXPORT*
 sudo ./build.sh  # or ./build-docker.sh
 ```
 

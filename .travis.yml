@@ -10,5 +10,5 @@ script:
   - ./configure-dig-on-pi.sh
   - ./build-docker.sh
 after_success:
-  - cd deploy && find * -type f -exec curl -u ${FTP_USER}:${FTP_PASSWORD} --ftp-create-dirs -T {} ftp://${FTP_HOSTNAME}/$(date +%Y-%m-%d_%H-%m)/{} \;
+  - cd deploy && find * -type f -exec curl -u ${FTP_USER}:${FTP_PASSWORD} --ftp-create-dirs -T {} ftp://${FTP_HOSTNAME}/${TRAVIS_BRANCH}_$(date +%Y-%m-%d_%H-%M-%S)_${TRAVIS_BUILD_ID}_${TRAVIS_COMMIT}/{} \;
 
