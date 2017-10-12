@@ -5,7 +5,7 @@ services:
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
-  - sudo apt-get install -y quilt parted realpath qemu-user-static debootstrap zerofree pxz zip dosfstools bsdtar libcap2-bin grep rsync
+  - sudo apt-get install -y quilt parted realpath qemu-user-static debootstrap zerofree pxz zip dosfstools bsdtar libcap2-bin grep rsync xz-utils
 script:
   - ./configure-dig-on-pi.sh
   - ./build-docker.sh
