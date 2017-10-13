@@ -13,5 +13,8 @@ cp -ra ${BASE_DIR}/stage3-digiges ${BASE_DIR}/stage3
 echo "Adapt image name"
 echo "IMG_NAME=DigOnPi" > ${BASE_DIR}/config
 
-# Remove build tools from image
+# Speed up build: Remove build tools from image
 sed -i "/build-essential manpages-dev python bash-completion gdb pkg-config/d" ${BASE_DIR}/stage2/01-sys-tweaks/00-packages
+
+# Remove attack surface: Remove service avahi-daemon
+sed -i "/avahi-daemon/d" ${BASE_DIR}/stage2/01-sys-tweaks/00-packages
