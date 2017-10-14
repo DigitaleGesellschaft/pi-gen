@@ -18,3 +18,6 @@ sed -i "/build-essential manpages-dev python bash-completion gdb pkg-config/d" $
 
 # Remove attack surface: Remove service avahi-daemon
 sed -i "/avahi-daemon/d" ${BASE_DIR}/stage2/01-sys-tweaks/00-packages
+
+# Speed up build: Remove NOOBS exports
+rm -f ${BASE_DIR}/stage2/EXPORT_NOOBS
