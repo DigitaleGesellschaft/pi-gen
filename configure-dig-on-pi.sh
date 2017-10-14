@@ -15,6 +15,7 @@ echo "IMG_NAME=DigOnPi" > ${BASE_DIR}/config
 
 # Speed up build: Remove build tools from image
 sed -i "/build-essential manpages-dev python bash-completion gdb pkg-config/d" ${BASE_DIR}/stage2/01-sys-tweaks/00-packages
+sed -i "/libraspberrypi-dev libraspberrypi-doc libfreetype6-dev/d" ${BASE_DIR}/stage2/01-sys-tweaks/00-packages
 
 # Remove attack surface: Remove service avahi-daemon
 sed -i "/avahi-daemon/d" ${BASE_DIR}/stage2/01-sys-tweaks/00-packages
