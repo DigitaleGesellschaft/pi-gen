@@ -5,10 +5,10 @@ services:
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
-  - sudo apt-get install -y quilt parted realpath qemu-user-static debootstrap zerofree pxz zip dosfstools bsdtar libcap2-bin grep rsync
+  - sudo apt-get install -y quilt parted realpath qemu-user-static debootstrap zerofree pxz zip dosfstools bsdtar libcap2-bin grep rsync xz-utils
 script:
   - ./configure-dig-on-pi.sh
   - ./build-docker.sh
 after_success:
-  - cd deploy && find * -type f -exec curl -u ${FTP_USER}:${FTP_PASSWORD} --ftp-create-dirs -T {} ftp://${FTP_HOSTNAME}/${TRAVIS_BRANCH}_$(date +%Y-%m-%d_%H-%M-%S)_${TRAVIS_BUILD_ID}_${TRAVIS_COMMIT}/{} \;
+  - cd deploy && find * -type f \( -name image_* -or -name build.log \) -exec curl -u ${FTP_USER}:${FTP_PASSWORD} --ftp-create-dirs -T {} ftp://${FTP_HOSTNAME}/${TRAVIS_BRANCH}_$(date +%Y-%m-%d_%H-%M-%S)_${TRAVIS_BUILD_ID}_${TRAVIS_COMMIT}/{} \;
 
