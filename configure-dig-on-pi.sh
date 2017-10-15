@@ -22,3 +22,6 @@ sed -i "/avahi-daemon/d" ${BASE_DIR}/stage2/01-sys-tweaks/00-packages
 
 echo "Speed up build: Remove NOOBS exports"
 rm -f ${BASE_DIR}/stage2/EXPORT_NOOBS
+
+echo "Speed up build: Remove locales from image"
+rm -rf ${BASE_DIR}/stage0/01-locale
