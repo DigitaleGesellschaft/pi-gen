@@ -11,4 +11,3 @@ script:
   - ./build-docker.sh
 after_success:
   - cd deploy && find * -type f \( -name image_* -or -name build.log \) -exec curl -u ${FTP_USER}:${FTP_PASSWORD} --ftp-create-dirs -T {} ftp://${FTP_HOSTNAME}/${TRAVIS_BUILD_NUMBER}-${TRAVIS_BRANCH}_$(date +%Y-%m-%d_%H-%M-%S)_${TRAVIS_COMMIT}/{} \;
-
