@@ -2,5 +2,5 @@ Log notice file /var/log/tor/notices.log
 VirtualAddrNetwork 10.192.0.0/10
 AutomapHostsSuffixes .onion,.exit
 AutomapHostsOnResolve 1
-TransPort 172.24.1.1:9040
-DNSPort 172.24.1.1:53
+TransPort 172.16.1.1:9040
+DNSPort 172.16.1.1:53
