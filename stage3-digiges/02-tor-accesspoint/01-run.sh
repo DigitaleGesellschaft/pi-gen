@@ -11,9 +11,8 @@ echo "disabled=1" >> ${ROOTFS_DIR}/etc/wpa_supplicant/wpa_supplicant.conf
 # Install traffic forwarding config
 install -m 644 files/30-ipforward.conf ${ROOTFS_DIR}/etc/sysctl.d/30-ipforward.conf
 
-# Configure DHCP server
-sed -i -e 's/INTERFACESv4=""/INTERFACESv4="wlan0"/' -e 's/INTERFACESv6=""/INTERFACESv6="wlan0"/' ${ROOTFS_DIR}/etc/default/isc-dhcp-server
-install -m 644 files/dhcpd.conf ${ROOTFS_DIR}/etc/dhcp/dhcpd.conf
+# Configure dnsmasq as DHCP server
+install -m 644 files/wlan0.conf ${ROOTFS_DIR}/etc/dnsmasq.d/wlan0.conf
 
 # Install our Tor configuration
 sed -i 's|#%include /etc/torrc.d/|%include /etc/torrc.d/|' ${ROOTFS_DIR}/etc/tor/torrc
